@@ -1,10 +1,30 @@
 <?xml version="1.0"?>
-<robot name="robot_arm">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot">
+  
+  <material name="White">
+    <color rgba="1 1 1 1"/>
+  </material>
+  
   <link name="base_link">
     <visual>
       <geometry>
-        <cylinder length="0.6" radius="0.2"/>
+        <mesh filename="package://robot_arm_control_pkg/meshes/base.stl" scale="0.001 0.001 0.001"/>
       </geometry>
+      <material name="White"/>
     </visual>
+
+    <collision>
+      <origin xyz="0 0 .15" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.3" radius="0.05"/>
+      </geometry>
+    </collision>
   </link>
+
+
+
+  
+
+
 </robot>
+
