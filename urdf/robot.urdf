@@ -5,6 +5,8 @@
     <color rgba="1 1 1 1"/>
   </material>
   
+  <xacro:property name="base_radius" value="0.05" />
+  <xacro:property name="base_height" value="0.0492" />
   <link name="base_link">
     <visual>
       <geometry>
@@ -14,9 +16,9 @@
     </visual>
 
     <collision>
-      <origin xyz="0 0 .15" rpy="0 0 0"/>
+      <origin xyz="0 0 ${base_height/2}" rpy="0 0 0"/>
       <geometry>
-        <cylinder length="0.3" radius="0.05"/>
+        <cylinder length="${base_height}" radius="${base_radius}"/>
       </geometry>
     </collision>
   </link>
