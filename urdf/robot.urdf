@@ -1,16 +1,30 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot">
-  
-  <material name="White">
-    <color rgba="1 1 1 1"/>
-  </material>
+
+  <!-- GLOBAL PROPERTIES-->
+  <xacro:property name="mesh_path" value="package://robot_arm_control_pkg/meshes" />
+
+  <xacro:property name="PI" value="3.14159265359" />
   
   <xacro:property name="base_radius" value="0.05" />
   <xacro:property name="base_height" value="0.0492" />
+  
+  
+  <!-- MATERIAL DEFINITION-->
+  <material name="White">
+    <color rgba="1 1 1 1"/>
+  </material>
+
+  <material name="Blue">
+    <color rgba="0 0 0.8 1"/>
+  </material>
+  
+
+  <!-- BASE LINK-->
   <link name="base_link">
     <visual>
       <geometry>
-        <mesh filename="package://robot_arm_control_pkg/meshes/base.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="${mesh_path}/base.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="White"/>
     </visual>
@@ -23,9 +37,56 @@
     </collision>
   </link>
 
+  <joint name="base_joint" type="revolute">
+    <origin xyz="0 0 ${base_height-0.0042}" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="shoulder_link"/>
+    <axis xyz="0 0 1 "/>
+    <limit lower="${-PI}" upper="${PI}" effort="0.1" velocity="0.1"/>
+  </joint>
+
+  <!-- SHOULDER LINK-->
+  <link name="shoulder_link">
+    <visual>
+      <geometry>
+        <mesh filename="${mesh_path}/shoulder_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="Blue"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="${mesh_path}/shoulder_link_collision.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
 
 
-  
+  <joint name="shoulder_joint" type="revolute">
+    <origin xyz="-0.0008 0 0.0458" rpy="0 0 0"/>
+    <parent link="shoulder_link"/>
+    <child link="upper_arm_link"/>
+    <axis xyz="0 0 1 "/>
+    <limit lower="${-PI}" upper="${PI}" effort="0.1" velocity="0.1"/>
+  </joint>-->
+
+    <!-- UPPER ARM LINK-->
+  <link name="upper_arm_link">
+    <visual>
+      <geometry>
+        <mesh filename="${mesh_path}/upper_arm.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <origin xyz="-0.005 0 0" rpy="${PI/2} ${-PI/2} ${PI/2}" />
+      <material name="White"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.005 0 0" rpy="${PI/2} ${-PI/2} ${PI/2}" />
+      <geometry>
+        <mesh filename="${mesh_path}/upper_arm_collision.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
 
 
 </robot>
