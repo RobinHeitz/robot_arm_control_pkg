@@ -42,7 +42,7 @@
     <parent link="base_link"/>
     <child link="shoulder_link"/>
     <axis xyz="0 0 1 "/>
-    <limit lower="${-PI}" upper="${PI}" effort="0.1" velocity="0.1"/>
+    <limit lower="${-PI/2}" upper="${PI/2}" effort="0.1" velocity="0.1"/>
   </joint>
 
   <!-- SHOULDER LINK-->
@@ -63,11 +63,11 @@
 
 
   <joint name="shoulder_joint" type="revolute">
-    <origin xyz="-0.0008 0 0.0458" rpy="0 0 0"/>
+    <origin xyz="-0.0008 0 0.0458" rpy="${5.5*PI/180} 0 0"/>
     <parent link="shoulder_link"/>
     <child link="upper_arm_link"/>
-    <axis xyz="0 0 1 "/>
-    <limit lower="${-PI}" upper="${PI}" effort="0.1" velocity="0.1"/>
+    <axis xyz="1 0 0 "/>
+    <limit lower="${-PI/2}" upper="${PI/2}" effort="0.1" velocity="0.1"/>
   </joint>-->
 
     <!-- UPPER ARM LINK-->

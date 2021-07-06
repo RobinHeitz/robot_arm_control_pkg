@@ -1,0 +1,9 @@
+#goal definition
+int32 channel
+float32 angle
+---
+#result definition
+float32 angel
+---
+#feedback
+float32 angel
