@@ -3,7 +3,7 @@ int32 channel
 float32 angle
 ---
 #result definition
-float32 angel
+float32 angle
 ---
 #feedback
-float32 angel
+float32 angle
