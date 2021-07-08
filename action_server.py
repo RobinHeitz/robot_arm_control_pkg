@@ -8,7 +8,7 @@ import actionlib
 
 from robot_arm_control_pkg.msg import ServoControlAction, ServoControlGoal, ServoControlResult, ServoControlFeedback
 
-from scripts.servo_controller import ServoController, ServoControllerFinishedMovementException
+from scripts.servo_control_pkg.servo_controller import ServoController, ServoControllerFinishedMovementException
 
 
 
