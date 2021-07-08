@@ -64,7 +64,7 @@ find_package(catkin REQUIRED
 ## Generate actions in the 'action' folder
 add_action_files(
     DIRECTORY action
-    FILES servo_control.action
+    FILES ServoControl.action
 )
 
 ## Generate added messages and services with any dependencies listed here
