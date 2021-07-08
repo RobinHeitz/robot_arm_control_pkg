@@ -42,6 +42,7 @@ class ServoController:
 
     
     def move_servo_to_degree(self, degree):
+        print("move_servo_to_degree")
         if degree == self.current_angle: return
 
         delta = abs(self.current_angle - degree)

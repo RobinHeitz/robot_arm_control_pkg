@@ -2,6 +2,8 @@
 
 import rospy
 
+import time
+
 import actionlib
 
 from robot_arm_control_pkg.msg import ServoControlAction, ServoControlGoal, ServoControlResult, ServoControlFeedback
@@ -17,16 +19,12 @@ def do_action(goal):
     angle = goal.angle
 
     servoController = ServoController(channel)
-    try:
-        servoController.move_servo_to_degree(angle)
-
-    except ServoControllerFinishedMovementException as e:
-
-        print("FINISHED MOVEMENT", e)
-
-        result = ServoControlResult()
-        result.angle = 69
-        server.set_succeeded(result)
+    servoController.move_servo_to_degree(angle)
+    time.sleep(5)
+    print("FINISHED MOVEMENT")
+    result = ServoControlResult()
+    result.angle = 69
+    server.set_succeeded(result)
 
 if __name__ == "__main__":
     rospy.init_node("servo_control_server_node")
