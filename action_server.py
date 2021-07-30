@@ -8,7 +8,7 @@ import actionlib
 
 from robot_arm_control_pkg.msg import ServoControlAction, ServoControlGoal, ServoControlResult, ServoControlFeedback
 
-from scripts.servo_control_pkg.servo_controller import ServoController, ServoControllerFinishedMovementException
+#from scripts.servo_control_pkg.servo_controller import ServoController, ServoControllerFinishedMovementException
 
 
 def do_action(goal):
@@ -46,7 +46,7 @@ def do_action(goal):
 
 if __name__ == "__main__":
     rospy.init_node("servo_control_server_node")
-    server = actionlib.SimpleActionServer("servo_controller_topic", ServoControlAction, move_servo, False)
+    server = actionlib.SimpleActionServer("servo_controller_topic", ServoControlAction, do_action, False)
     server.start()
     print("rospy spin now...")
     rospy.spin()
